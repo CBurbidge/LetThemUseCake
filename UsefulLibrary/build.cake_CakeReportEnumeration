@@ -1,0 +1,22 @@
+var target = Argument("target", "Default");
+
+Task("Task_1")
+  .Does(() =>
+{
+  Information("Task_1");
+});
+
+Task("Task_2")
+  .IsDependentOn("Task_1")
+  .Does(() =>
+{
+  Information("Task_2");
+});
+
+Task("Default").IsDependentOn("Task_2").Does(() => {});
+
+var cakeReport = RunTarget(target);
+
+foreach (var cakeReportEntry in cakeReport){
+    Information("{0} - {1}", cakeReportEntry.TaskName, cakeReportEntry.Duration);
+}

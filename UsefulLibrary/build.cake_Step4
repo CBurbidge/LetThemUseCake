@@ -1,0 +1,12 @@
+#addin "Cake.Figlet"
+var target = Argument("target", "Default");
+
+Task("Last").Does(() => {
+	Information(Figlet("Thank you"));
+	Information(Figlet("For listening"));
+	Information(Figlet("Are there"));
+	Information(Figlet("Any questions?"));
+});
+
+Task("Default").IsDependentOn("Last").Does(() => {});
+RunTarget(target);
